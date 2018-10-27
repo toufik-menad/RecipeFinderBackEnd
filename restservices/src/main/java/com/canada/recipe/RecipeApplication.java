@@ -6,6 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 /*
  * First commit
  * a test to make sure the git is set up correctly
+ * added moduless
  */
 @SpringBootApplication
 public class RecipeApplication {
