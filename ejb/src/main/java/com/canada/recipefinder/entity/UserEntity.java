@@ -11,7 +11,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 /**
@@ -29,8 +29,8 @@ public class UserEntity {
 	@Column(nullable = false)
 	private String password;
 
-	@OneToMany(fetch = FetchType.EAGER)
-	private List<Role> roles = new ArrayList<Role>();
+	@ManyToMany(fetch = FetchType.EAGER)
+	private List<RoleEntity> roles = new ArrayList<RoleEntity>();
 
 	/**
 	 * @return the email
@@ -65,7 +65,7 @@ public class UserEntity {
 	/**
 	 * @return the roles
 	 */
-	public List<Role> getRoles() {
+	public List<RoleEntity> getRoles() {
 		return roles;
 	}
 
@@ -73,7 +73,7 @@ public class UserEntity {
 	 * @param roles
 	 *            the roles to set
 	 */
-	public void setRoles(List<Role> roles) {
+	public void setRoles(List<RoleEntity> roles) {
 		this.roles = roles;
 	}
 
