@@ -3,6 +3,8 @@
  */
 package com.canada.recipefinder.ejb;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -21,7 +23,7 @@ import com.canada.recipefinder.services.AccountService;
 @Service
 @Transactional
 public class AccountServiceImpl implements AccountService {
-
+	private final Logger LOGGER = LoggerFactory.getLogger(getClass());
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
 
@@ -33,7 +35,8 @@ public class AccountServiceImpl implements AccountService {
 
 	@Override
 	public UserEntity saveUser(UserEntity user) {
-		user.setPassword(passwordEncoder.encode(user.getPassword()));
+		final String pass= passwordEncoder.encode(user.getPassword());
+		user.setPassword(pass);
 		return userRepository.save(user);
 	}
 
@@ -43,15 +46,16 @@ public class AccountServiceImpl implements AccountService {
 	}
 
 	@Override
-	public void addRoleToUser(String email, String roleName) {
-		final RoleEntity role = roleRepository.findByRole(roleName);
-		final UserEntity user = userRepository.findByEmail(email);
-		user.getRoles().add(role);		
+	public void addRoleToUser(String username, String role) {
+		final RoleEntity roleEntity = roleRepository.findByRole(role);
+		final UserEntity user = userRepository.findByUsername(username);
+		user.getRoles().add(roleEntity );		
 	}
 
 	@Override
-	public UserEntity findUserByUserName(String email) {
-		return userRepository.findByEmail(email);
+	public UserEntity findUserByEmail(String email) {
+		LOGGER.info("email {}",email );
+		return userRepository.findByUsername(email);
 	}
 
 }

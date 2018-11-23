@@ -4,15 +4,15 @@
 package com.canada.recipefinder.entity;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
-import javax.management.relation.Role;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-import javax.persistence.Table;
 
 /**
  * @author MENAD
@@ -20,23 +20,36 @@ import javax.persistence.Table;
  */
 
 @Entity
-@Table(name = "user")
 public class UserEntity {
-	@Id
-	@Column(unique = true, nullable = false)
-	private String email;
+	@Id @GeneratedValue
+	@Column(unique=true)
+	private Integer id;
+	
+	@Column(unique = true)
+	private String username;
 
-	@Column(nullable = false)
+	@Column(columnDefinition="VARCHAR(100)")
 	private String password;
 
 	@ManyToMany(fetch = FetchType.EAGER)
-	private List<RoleEntity> roles = new ArrayList<RoleEntity>();
+	private Collection<RoleEntity> roles = new ArrayList<>();
+	
+	
+	UserEntity(){		
+	}
+	
+	public UserEntity(Integer id, String email, String password, Collection<RoleEntity> roles) {
+		this.id = id;
+		this.username = email;
+		this.password = password;
+		this.roles = roles;
+	}
 
 	/**
 	 * @return the email
 	 */
 	public String getEmail() {
-		return email;
+		return username;
 	}
 
 	/**
@@ -44,7 +57,7 @@ public class UserEntity {
 	 *            the email to set
 	 */
 	public void setEmail(String email) {
-		this.email = email;
+		this.username = email;
 	}
 
 	/**
@@ -65,7 +78,7 @@ public class UserEntity {
 	/**
 	 * @return the roles
 	 */
-	public List<RoleEntity> getRoles() {
+	public Collection<RoleEntity> getRoles() {
 		return roles;
 	}
 
@@ -76,5 +89,21 @@ public class UserEntity {
 	public void setRoles(List<RoleEntity> roles) {
 		this.roles = roles;
 	}
+
+	/**
+	 * @return the id
+	 */
+	public Integer getId() {
+		return id;
+	}
+
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(Integer id) {
+		this.id = id;
+	}
+	
+	
 
 }

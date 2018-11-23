@@ -15,6 +15,6 @@ public interface AccountService {
 	public UserEntity saveUser(UserEntity user);
 	public RoleEntity saveRole(RoleEntity role);
 	public void addRoleToUser(String userName, String role); 
-	public UserEntity findUserByUserName(String email);
+	public UserEntity findUserByEmail(String email);
 
 }

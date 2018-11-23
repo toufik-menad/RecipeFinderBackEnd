@@ -3,13 +3,11 @@
  */
 package com.canada.recipefinder.dto;
 
-import javax.persistence.Entity;
-
 /**
  * @author MENAD
  *
  */
-@Entity
+
 public class User {
 	
 	private String email;

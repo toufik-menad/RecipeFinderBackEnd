@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.canada.recipefinder.dao.UserRepository;
+import com.canada.recipefinder.entity.UserEntity;
+
 /**
  * @author MENAD
  *
@@ -26,12 +29,17 @@ public class Controller {
 	@Autowired
 	private TestRepository TestRepository;
 	
+	@Autowired
+	private UserRepository userRepository;
+	
 	
 	
 	@PostMapping(path="/test")
 	public String printMessage(@RequestBody Test test) {
 		LOGGER.info("This is a test to make sure the  controller works just fine");
 		TestRepository.save(test);
+		UserEntity user = userRepository.findByUsername("user");
+		LOGGER.info("user: {}",user.getPassword());
 		return "TEST";
 	}
 	
