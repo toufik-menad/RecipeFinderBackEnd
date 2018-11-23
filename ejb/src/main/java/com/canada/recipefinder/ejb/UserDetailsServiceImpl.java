@@ -15,6 +15,7 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
 
 import com.canada.recipefinder.entity.UserEntity;
 import com.canada.recipefinder.services.AccountService;
@@ -23,7 +24,7 @@ import com.canada.recipefinder.services.AccountService;
  * @author MENAD
  *
  */
-
+@Service
 public class UserDetailsServiceImpl implements UserDetailsService {
 	
 	Logger logger = LoggerFactory.getLogger(getClass());

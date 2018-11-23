@@ -1,7 +1,7 @@
 package com.canada.recipe;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -12,8 +12,14 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
+import org.springframework.security.crypto.password.DelegatingPasswordEncoder;
+import org.springframework.security.crypto.password.NoOpPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.crypto.password.Pbkdf2PasswordEncoder;
+import org.springframework.security.crypto.password.StandardPasswordEncoder;
+import org.springframework.security.crypto.scrypt.SCryptPasswordEncoder;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import com.canada.recipefinder.entity.RoleEntity;
@@ -28,7 +34,7 @@ import com.canada.recipefinder.services.AccountService;
 @SpringBootApplication
 @EnableAutoConfiguration
 @EnableWebMvc
-@EnableWebSecurity
+//@EnableWebSecurity
 @ComponentScan({"com.canada.*"})
 @EnableJpaRepositories({"com.*"})
 @EntityScan({"com.*"})
@@ -47,6 +53,8 @@ public class RecipeApplication implements CommandLineRunner{
 	public BCryptPasswordEncoder getBcryptPasswordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
+	
+
   
 	@Override
 	public void run(String... arg0) throws Exception{
