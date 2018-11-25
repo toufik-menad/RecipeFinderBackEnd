@@ -1,8 +1,5 @@
 package com.canada.recipe;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -13,13 +10,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.factory.PasswordEncoderFactories;
-import org.springframework.security.crypto.password.DelegatingPasswordEncoder;
-import org.springframework.security.crypto.password.NoOpPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.crypto.password.Pbkdf2PasswordEncoder;
-import org.springframework.security.crypto.password.StandardPasswordEncoder;
-import org.springframework.security.crypto.scrypt.SCryptPasswordEncoder;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import com.canada.recipefinder.entity.RoleEntity;
@@ -58,15 +48,14 @@ public class RecipeApplication implements CommandLineRunner{
   
 	@Override
 	public void run(String... arg0) throws Exception{
-		RoleEntity role = new RoleEntity(null, "USER");
+		RoleEntity roleUser = new RoleEntity(null, "USER");
+		RoleEntity roleAdmin = new RoleEntity(null, "ADMIN");
   
-		UserEntity userEntity = new UserEntity(null,"user","test",null );
-		UserEntity userEntity1 = new UserEntity(null,"user1","test",null );
-		service.saveUser(userEntity);
-		service.saveUser(userEntity1);
-		service.saveRole(role);
-		service.addRoleToUser("user", "USER");
-		service.addRoleToUser("user1", "USER");
+		UserEntity userEntity = new UserEntity(null,"admin","L0337007",null );
 		
+		service.saveUser(userEntity);
+		service.saveRole(roleAdmin);
+		service.saveRole(roleUser);
+		service.addRoleToUser("admin", "ADMIN");		
 	}
 }

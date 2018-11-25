@@ -50,7 +50,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 		
 		logger.info("authorities: {}",authorities.size() );
 		
-		User user = new User(userEntity.getEmail(), userEntity.getPassword(), authorities);
+		User user = new User(userEntity.getUsername(), userEntity.getPassword(), authorities);
 		return user;
 	}
 

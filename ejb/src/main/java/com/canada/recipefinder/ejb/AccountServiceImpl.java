@@ -59,4 +59,9 @@ public class AccountServiceImpl implements AccountService {
 		return userRepository.findByUsername(email);
 	}
 
+	@Override
+	public RoleEntity findRoleByName(String roleName) {
+		return roleRepository.findByRole(roleName);
+	}
+
 }

@@ -37,58 +37,15 @@ public class UserEntity {
 	
 	UserEntity(){		
 	}
-	
-	public UserEntity(Integer id, String email, String password, Collection<RoleEntity> roles) {
+
+
+	public UserEntity(Integer id, String username, String password, Collection<RoleEntity> roles) {
 		this.id = id;
-		this.username = email;
+		this.username = username;
 		this.password = password;
 		this.roles = roles;
 	}
 
-	/**
-	 * @return the email
-	 */
-	public String getEmail() {
-		return username;
-	}
-
-	/**
-	 * @param email
-	 *            the email to set
-	 */
-	public void setEmail(String email) {
-		this.username = email;
-	}
-
-	/**
-	 * @return the password
-	 */
-	public String getPassword() {
-		return password;
-	}
-
-	/**
-	 * @param password
-	 *            the password to set
-	 */
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	/**
-	 * @return the roles
-	 */
-	public Collection<RoleEntity> getRoles() {
-		return roles;
-	}
-
-	/**
-	 * @param roles
-	 *            the roles to set
-	 */
-	public void setRoles(List<RoleEntity> roles) {
-		this.roles = roles;
-	}
 
 	/**
 	 * @return the id
@@ -97,13 +54,60 @@ public class UserEntity {
 		return id;
 	}
 
+
 	/**
 	 * @param id the id to set
 	 */
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	
-	
+
+
+	/**
+	 * @return the username
+	 */
+	public String getUsername() {
+		return username;
+	}
+
+
+	/**
+	 * @param username the username to set
+	 */
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+
+	/**
+	 * @return the password
+	 */
+	public String getPassword() {
+		return password;
+	}
+
+
+	/**
+	 * @param password the password to set
+	 */
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+
+	/**
+	 * @return the roles
+	 */
+	public Collection<RoleEntity> getRoles() {
+		return roles;
+	}
+
+
+	/**
+	 * @param roles the roles to set
+	 */
+	public void setRoles(Collection<RoleEntity> roles) {
+		this.roles = roles;
+	}
 
 }
