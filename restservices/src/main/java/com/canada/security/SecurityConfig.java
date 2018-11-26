@@ -7,6 +7,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -35,10 +36,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		// Disable csrf
 		http.csrf().disable();
-		http.formLogin();
+		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+		// http.formLogin();
 		http.authorizeRequests().antMatchers("/login/**","/register/**").permitAll();
 		http.authorizeRequests().antMatchers(HttpMethod.POST,"/api/test/**").hasAuthority("ADMIN");
-		http.authorizeRequests().anyRequest().authenticated();
+		http.authorizeRequests().anyRequest().authenticated()
+		.and()
+		.addFilter(new JWTAuthenticationFilter(authenticationManager()));
 	}
 
 }

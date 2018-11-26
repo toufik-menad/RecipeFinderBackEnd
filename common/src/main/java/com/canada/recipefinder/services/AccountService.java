@@ -3,6 +3,8 @@
  */
 package com.canada.recipefinder.services;
 
+import java.util.List;
+
 import com.canada.recipefinder.entity.RoleEntity;
 import com.canada.recipefinder.entity.UserEntity;
 
@@ -17,5 +19,6 @@ public interface AccountService {
 	public void addRoleToUser(String userName, String role); 
 	public UserEntity findUserByEmail(String email);
 	public RoleEntity findRoleByName(String roleName);
+	public List<UserEntity> findAll();
 
 }
