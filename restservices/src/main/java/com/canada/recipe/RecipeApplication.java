@@ -44,7 +44,7 @@ public class RecipeApplication implements CommandLineRunner{
 		return new BCryptPasswordEncoder();
 	}
 	
-
+ 
   
 	@Override
 	public void run(String... arg0) throws Exception{

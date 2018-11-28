@@ -12,7 +12,7 @@ import java.util.Date;
 abstract class SecurityConstants {
 
 	public static final String SECRET = "TEST";
-	public static final Date DATE = new Date(System.currentTimeMillis()+500);
+	public static final Date DATE = new Date(System.currentTimeMillis()+500000000);
 	public static final String TOKEN = "Bearer ";
 	public static final String AUTHORIZATION = "Authorization";
 	
