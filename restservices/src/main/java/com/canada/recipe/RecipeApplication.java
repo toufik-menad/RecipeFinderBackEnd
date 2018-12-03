@@ -16,6 +16,8 @@ import com.canada.recipefinder.entity.RoleEntity;
 import com.canada.recipefinder.entity.UserEntity;
 import com.canada.recipefinder.services.AccountService;
 
+
+
 /*
  * First commit --reloaded the project
  * a test to make sure the git is set up correctly
@@ -44,7 +46,7 @@ public class RecipeApplication implements CommandLineRunner{
 		return new BCryptPasswordEncoder();
 	}
 	
- 
+
   
 	@Override
 	public void run(String... arg0) throws Exception{

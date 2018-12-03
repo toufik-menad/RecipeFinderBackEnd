@@ -36,8 +36,24 @@ public class JWTAuthorizationFilter extends OncePerRequestFilter  {
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
 			throws ServletException, IOException {
+		
+		//Set up for Angular7
+		response.addHeader("Access-Control-Allow-Origin", "*");
+		response.addHeader("Access-Control-Allow-Headers", "Origin, Accept, X-Requested-With, Content-Type,"
+				+"Access-Control-Request-Method,"
+				+"Acces-Control-Request-Headers,"
+				+"Authorization");
+		response.addHeader("Access-Control-Expose-Headers","Access-Control-Allow-Origin,"+ "Access-Control-Allow-Credentials, Authorization");
+		
+		
+		if("OPTIONS".equals(request.getMethod())) {
+			response.setStatus(HttpServletResponse.SC_OK);
+		}else {
+		
 		final String jwt = request.getHeader(SecurityConstants.AUTHORIZATION);
-		logger.info("jwt"+jwt);
+		logger.info("jwt: "+jwt);
+		
+		
 		
 		if(jwt == null || !jwt.startsWith(SecurityConstants.TOKEN)) {
 			filterChain.doFilter(request, response);
@@ -58,7 +74,7 @@ public class JWTAuthorizationFilter extends OncePerRequestFilter  {
 			SecurityContextHolder.getContext().setAuthentication(userNamePasswordToken);
 			filterChain.doFilter(request, response);
 		}
-		
+		}
 	}
 	
 	
