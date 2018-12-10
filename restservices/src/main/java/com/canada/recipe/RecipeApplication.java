@@ -50,14 +50,14 @@ public class RecipeApplication implements CommandLineRunner{
   
 	@Override
 	public void run(String... arg0) throws Exception{
-		RoleEntity roleUser = new RoleEntity(null, "USER");
-		RoleEntity roleAdmin = new RoleEntity(null, "ADMIN");
-  
-		UserEntity userEntity = new UserEntity(null,"admin","L0337007",null );
-		
-		service.saveUser(userEntity);
-		service.saveRole(roleAdmin);
-		service.saveRole(roleUser);
-		service.addRoleToUser("admin", "ADMIN");		
+//		RoleEntity roleUser = new RoleEntity(null, "USER");
+//		RoleEntity roleAdmin = new RoleEntity(null, "ADMIN");
+//  
+//		UserEntity userEntity = new UserEntity(null,"admin","L0337007",null );
+//		
+//		service.saveUser(userEntity);
+//		service.saveRole(roleAdmin);
+//		service.saveRole(roleUser);
+//		service.addRoleToUser("admin", "ADMIN");		
 	}
 }
